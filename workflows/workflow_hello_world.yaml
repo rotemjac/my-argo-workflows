@@ -3,5 +3,10 @@ kind: Workflow
 metadata:
   name: hello
 spec:
+  entrypoint: hello-world
+  arguments:
+    parameters:
+      - name: msg
+        value: "from workflow"
   workflowTemplateRef:
     name: hello-world-template-1
