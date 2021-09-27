@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: hello
+spec:
+  schedule: "* * * * *"
+  workflowSpec:
+    entrypoint: main
+    templates:
+      - name: main
+        #container:
+        #  image: docker/whalesay
+        templateRef:
+          name: hello-world-template-1
+          template: hello-world
