@@ -5,6 +5,16 @@ metadata:
   name: workflow-template-tenant-execution
 spec:
   entrypoint: main
+  arguments:
+    parameters:
+        - name: ecr_name
+          value: "ecr-csp"
+          - name: worker_nodes_role_name
+            value: "eks-node-group-role"
+          - name: default_region
+            value: "eu-west-1"
+          - name: ecr_region
+            value: "us-west-2"
   templates:
     - name: main
       dag:
@@ -13,16 +23,6 @@ spec:
             templateRef:
               name: get-aws-creds-workflow-template
               template: get-creds
-            arguments:
-              parameters:
-                - name: ecr_name
-                  value: "ecr-csp"
-                - name: worker_nodes_role_name
-                  value: "eks-node-group-role"
-                - name: default_region
-                  value: "eu-west-1"
-                - name: ecr_region
-                  value: "us-west-2"
           - name: B
             depends: "A"
             templateRef:
