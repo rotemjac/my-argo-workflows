@@ -30,8 +30,8 @@ spec:
         artifacts:
           - name: aws-config-file
             path: ~/.aws
-      outputs:
-        parameters:
-          - name: latest_release
-            valueFrom:
-              parameter:  "Change-me" # "{{steps.add.outputs.result}}" # TODO: Change this
+      #outputs:
+      #  parameters:
+      #    - name: latest_release
+      #      valueFrom:
+      #        parameter:  "Change-me" # "{{steps.add.outputs.result}}" # TODO: Change this
