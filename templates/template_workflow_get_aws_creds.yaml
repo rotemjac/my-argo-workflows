@@ -30,7 +30,7 @@ spec:
         imagePullPolicy: IfNotPresent
         #workingDir: /app
         volumeMounts:
-          - mountPath: ~./aws
+          - mountPath: ~/.aws
             name: aws-config
         command:
           - /bin/sh
