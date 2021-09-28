@@ -28,7 +28,7 @@ spec:
               name: get-aws-creds-workflow-template
               template: get-creds
           - name: B
-            depends: "A"
+            #depends: "A"
             templateRef:
               name: get-latest-release-workflow-template
               template: get-latest
