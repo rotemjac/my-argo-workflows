@@ -26,10 +26,10 @@ spec:
             echo "Hi"
             echo $(ls -la ~/.aws/config)
             sleep 100000
-      inputs:
-        artifacts:
-          - name: aws-config-file
-            path: ~/.aws
+      #inputs:
+      #  artifacts:
+      #    - name: aws-config-file
+      #      path: ~/.aws
       #outputs:
       #  parameters:
       #    - name: latest_release
