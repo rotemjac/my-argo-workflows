@@ -7,14 +7,14 @@ spec:
   entrypoint: main
   arguments:
     parameters:
-        - name: ecr_name
-          value: "ecr-csp"
-          - name: worker_nodes_role_name
-            value: "eks-node-group-role"
-          - name: default_region
-            value: "eu-west-1"
-          - name: ecr_region
-            value: "us-west-2"
+      - name: ecr_name
+        value: "ecr-csp"
+      - name: worker_nodes_role_name
+        value: "eks-node-group-role"
+      - name: default_region
+        value: "eu-west-1"
+      - name: ecr_region
+        value: "us-west-2"
   templates:
     - name: main
       dag:
