@@ -8,5 +8,7 @@ spec:
     parameters:
       - name: ecr_arn
         value: "From specific workflow"
+      - name: worker_nodes_role_name
+        value: "eks-node-group-role"
   workflowTemplateRef:
     name: check-latest-release-on-ecr-template
