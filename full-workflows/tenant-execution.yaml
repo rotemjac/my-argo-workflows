@@ -26,8 +26,8 @@ spec:
           - name: B
             depends: "A"
             templateRef:
-              name: get-latest-release
-              template: get-latest-release-workflow-template
+              name: get-latest-release-workflow-template
+              template: get-latest
             arguments:
               artifacts:
                 - name: aws-config-file
