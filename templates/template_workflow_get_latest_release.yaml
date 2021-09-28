@@ -19,6 +19,9 @@ spec:
       container:
         image: public.ecr.aws/l8x8m8p8/aws-cli-git
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: ~./aws
+            name: aws-config
         command:
           - /bin/sh
           - -c

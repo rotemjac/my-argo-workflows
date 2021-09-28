@@ -27,17 +27,11 @@ spec:
             templateRef:
               name: get-aws-creds-workflow-template
               template: get-creds
-            volumeMounts:
-              - mountPath: ~./aws
-                name: aws-config
           - name: B
             depends: "A"
             templateRef:
               name: get-latest-release-workflow-template
               template: get-latest
-            volumeMounts:
-              - mountPath: ~./aws
-                name: aws-config
             #arguments:
             #  artifacts:
             #    - name: aws-config-file
