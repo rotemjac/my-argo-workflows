@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: check-latest-release-on-ecr-template
+spec:
+  entrypoint: main
+  arguments:
+    # Moved to each step..
+    #parameters:
+      #- name: ecr-arn
+      #  value: some-ecr-arn
+      #- name: branch
+      #  value: master
+      #- name: output
+      #  value: argo-workflows-catalog
+  templates:
+    - name: main
+      steps:
+        - - name: get-creds
+            template: get-creds
+        #- - name: build
+        #    template: build
+        #- - name: test
+        #    template: test
+    - name: get-creds
+      inputs:
+        parameters:
+          - name: ecr_arn
+            value: "override-me"
+      container:
+        image: odaniait/aws-kubectl
+        command:
+          - /bin/sh
+          - -c
+          - |-
+            echo "{{inputs.parameters.ecr_arn}}"
+        #    export AccessKeyId=$(aws sts assume-role --role-arn {{ .Values.roleArn }} --role-session-name RoleSession --query 'Credentials.AccessKeyId')
+        #    export SessionToken=$(aws sts assume-role --role-arn {{ .Values.roleArn }} --role-session-name RoleSession --query 'Credentials.SessionToken')
+        #    echo $AccessKeyId
+        #command: [cowsay]
+        #args: ["{{inputs.parameters.msg}}"]
