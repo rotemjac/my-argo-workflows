@@ -23,8 +23,8 @@ spec:
           - /bin/sh
           - -c
           - |-
+            echo "Hi"
             echo $(ls -la ~/.aws/config)
-
             sleep 100000
       inputs:
         artifacts:
