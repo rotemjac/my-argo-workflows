@@ -7,6 +7,6 @@ spec:
   arguments:
     parameters:
       - name: ecr_arn
-        value: "from workflow"
+        value: "From specific workflow"
   workflowTemplateRef:
     name: check-latest-release-on-ecr-template
