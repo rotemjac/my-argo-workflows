@@ -10,7 +10,10 @@ spec:
         value: "ecr-csp"
       - name: worker_nodes_role_name
         value: "eks-node-group-role"
-      - name: region
+      - name: default_region
         value: "eu-west-1"
+      - name: ecr_region
+        value: "us-west-2"
+
   workflowTemplateRef:
     name: check-latest-release-on-ecr-template
