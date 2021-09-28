@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: check-latest-release-on-ecr
+  name: get-aws-creds
 spec:
   entrypoint: main
   arguments:
@@ -16,4 +16,4 @@ spec:
         value: "us-west-2"
 
   workflowTemplateRef:
-    name: check-latest-release-on-ecr-template
+    name: get-aws-creds
