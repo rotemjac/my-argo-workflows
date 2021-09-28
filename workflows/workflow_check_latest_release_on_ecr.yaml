@@ -9,4 +9,4 @@ spec:
       - name: ecr_arn
         value: "from workflow"
   workflowTemplateRef:
-    name: hello-world-template-1
+    name: check-latest-release-on-ecr-template
