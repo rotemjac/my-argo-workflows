@@ -24,7 +24,7 @@ spec:
     - name: get-creds
       container:
         image: odaniait/aws-kubectl
-        workingDir: app
+        workingDir: /app
         command:
           - /bin/sh
           - -c
