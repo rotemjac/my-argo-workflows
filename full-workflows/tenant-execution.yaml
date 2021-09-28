@@ -21,21 +21,22 @@ spec:
 
   templates:
     - name: main
-      dag:
-        tasks:
-          - name: A
-            templateRef:
-              name: get-aws-creds-workflow-template
-              template: get-creds
-          - name: B
-            #depends: "A"
-            templateRef:
-              name: get-latest-release-workflow-template
-              template: get-latest
-            #arguments:
-            #  artifacts:
-            #    - name: aws-config-file
-            #      from: "{{tasks.A.outputs.artifacts.aws-config-file}}"
+      #dag:
+      #  tasks:
+      steps:
+      - - name: A
+          templateRef:
+            name: get-aws-creds-workflow-template
+            template: get-creds
+      - - name: B
+          #depends: "A"
+          templateRef:
+            name: get-latest-release-workflow-template
+            template: get-latest
+          #arguments:
+          #  artifacts:
+          #    - name: aws-config-file
+          #      from: "{{tasks.A.outputs.artifacts.aws-config-file}}"
 
 #         - name: C
 #           depends: "A"
