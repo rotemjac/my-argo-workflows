@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: check-latest-release-on-ecr
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: ecr_arn
+        value: "from workflow"
+  workflowTemplateRef:
+    name: hello-world-template-1
