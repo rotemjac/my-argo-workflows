@@ -45,9 +45,9 @@ spec:
             aws configure set output "text" --profile $PROFILE
 
             export AWS_DEFAULT_REGION="{{workflow.parameters.ecr_region}}"
-            echo $(aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}") \
+            echo $(aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}" \
             --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output text \
-            | tail -n 3 | awk -F'- ' '{print $2}'
+            | tail -n 3 | awk -F'- ' '{print $2}')
 
             sleep 100000
 
