@@ -40,7 +40,7 @@ spec:
             aws configure set region "{{workflow.parameters.region}}" --profile $PROFILE
             aws configure set output "text" --profile $PROFILE
 
-            aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}" --profile $PROFILE
+            echo $(aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}" --profile $PROFILE)
 
             sleep 100000
         #command: [cowsay]
