@@ -23,7 +23,7 @@ spec:
         #    template: test
     - name: get-creds
       container:
-        image: odaniait/aws-kubectl
+        image: amazon/aws-cli
         workingDir: /app
         command:
           - /bin/sh
