@@ -6,8 +6,8 @@ spec:
   entrypoint: main
   arguments:
     parameters:
-      - name: ecr_arn
-        value: "From specific workflow"
+      - name: ecr_name
+        value: "ecr-csp"
       - name: worker_nodes_role_name
         value: "eks-node-group-role"
       - name: region
