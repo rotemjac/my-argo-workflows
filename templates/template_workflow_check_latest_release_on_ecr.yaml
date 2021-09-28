@@ -29,16 +29,16 @@ spec:
           - /bin/sh
           - -c
           - |-
-            echo "{{workflow.parameters.ecr_arn}}"
             export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
             export AWS_ACCESS_KEY_ID=$(aws sts assume-role --role-arn arn:aws:iam::${AWS_ACCOUNT_ID}:role/{{workflow.parameters.worker_nodes_role_name}} --role-session-name RoleSession --query 'Credentials.AccessKeyId')
             export AWS_SECRET_ACCESS_KEY=$(aws sts assume-role --role-arn arn:aws:iam::${AWS_ACCOUNT_ID}:role/{{workflow.parameters.worker_nodes_role_name}} --role-session-name RoleSession --query 'Credentials.SecretAccessKey')
-            export AWS_DEFAULT_REGION="{{workflow.parameters.ecr_arn}}"
+            export AWS_DEFAULT_REGION="{{workflow.parameters.region}}"
 
             cat $PWD
             whoami
 
-            aws ecr list-images --repository-name ecr-csp
+            echo "{{workflow.parameters.ecr_name}}"
+            aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}"
 
 
             sleep 100000
