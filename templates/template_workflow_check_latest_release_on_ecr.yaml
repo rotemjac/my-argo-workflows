@@ -10,8 +10,8 @@ spec:
         value: "WorkflowTemplate default value"
       - name: worker_nodes_role_name
         value: "WorkflowTemplate default value"
-      #- name: output
-      #  value: argo-workflows-catalog
+      - name: region
+        value: "WorkflowTemplate default value"
   templates:
     - name: main
       steps:
@@ -32,8 +32,7 @@ spec:
             export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
             export AccessKeyId=$(aws sts assume-role --role-arn arn:aws:iam::${AWS_ACCOUNT_ID}:role/{{workflow.parameters.worker_nodes_role_name}} --role-session-name RoleSession --query 'Credentials.AccessKeyId')
             export SessionToken=$(aws sts assume-role --role-arn arn:aws:iam::${AWS_ACCOUNT_ID}:role/{{workflow.parameters.worker_nodes_role_name}} --role-session-name RoleSession --query 'Credentials.SessionToken')
-            echo $AccessKeyId
-            echo $SessionToken
+            aws configure set aws_access_key_id $AccessKeyId --profile workflow-user && aws configure set --profile workflow-user && aws_secret_access_key $SessionToken --profile workflow-user && aws configure set region {{workflow.parameters.region}} --profile workflow-user && aws configure set output "text" --profile workflow-user
             sleep 100000
         #command: [cowsay]
         #args: ["{{inputs.parameters.msg}}"]
