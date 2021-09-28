@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: workflow-template-tenant-execution-
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      dag:
+        tasks:
+          - name: A
+            templateRef:
+              name: get-aws-creds-workflow-template
+              template: get-creds
+            arguments:
+              parameters:
+                - name: ecr_name
+                  value: "ecr-csp"
+                - name: worker_nodes_role_name
+                  value: "eks-node-group-role"
+                - name: default_region
+                  value: "eu-west-1"
+                - name: ecr_region
+                  value: "us-west-2"
+          - name: B
+            depends: "A"
+            templateRef:
+              name: get-latest-release
+              template: get-latest-release-workflow-template
+            arguments:
+              artifacts:
+                - name: aws-config-file
+                  from: "{{tasks.A.outputs.artifacts.aws-config-file}}"
+
+
+#         - name: C
+#           depends: "A"
+#           templateRef:
+#             name: workflow-template-inner-dag
+#             template: inner-diamond

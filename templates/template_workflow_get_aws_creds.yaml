@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: check-latest-release-on-ecr-template
+  name: get-aws-creds-workflow-template
 spec:
   entrypoint: main
   arguments:
@@ -53,3 +53,11 @@ spec:
 
         #command: [cowsay]
         #args: ["{{inputs.parameters.msg}}"]
+      outputs:
+        #parameters:
+        #  - name: output-param-1
+        #    valueFrom:
+        #      path: /p1.txt
+        artifacts:
+          - name: aws-config-file
+            path: ~/.aws

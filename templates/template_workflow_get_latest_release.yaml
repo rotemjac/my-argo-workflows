@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: get-latest-release-workflow-template
+spec:
+  entrypoint: main
+  #arguments:
+    #parameters:
+    #  - name: ecr_name
+    #    value: "WorkflowTemplate default value"
+
+  templates:
+    - name: main
+      steps:
+        - - name: get-latest
+            template: get-latest
+
+    - name: get-latest
+      container:
+        image: public.ecr.aws/l8x8m8p8/aws-cli-git
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/sh
+          - -c
+          - |-
+            echo $(ls -la ~/.aws/config)
+
+            sleep 100000
+      inputs:
+        artifacts:
+          - name: aws-config-file
+            path: ~/.aws
+      outputs:
+        parameters:
+          - name: latest_release
+            valueFrom:
+              parameter:  "Change-me" # "{{steps.add.outputs.result}}" # TODO: Change this
