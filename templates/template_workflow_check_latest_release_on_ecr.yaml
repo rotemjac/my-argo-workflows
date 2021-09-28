@@ -10,8 +10,11 @@ spec:
         value: "WorkflowTemplate default value"
       - name: worker_nodes_role_name
         value: "WorkflowTemplate default value"
-      - name: region
+      - name: default_region
         value: "WorkflowTemplate default value"
+      - name: ecr_region
+        value: "WorkflowTemplate default value"
+
   templates:
     - name: main
       steps:
@@ -24,8 +27,8 @@ spec:
     - name: get-creds
       container:
         image: public.ecr.aws/l8x8m8p8/aws-cli-git
+        imagePullPolicy: IfNotPresent
         #workingDir: /app
-
         command:
           - /bin/sh
           - -c
@@ -38,11 +41,13 @@ spec:
             export PROFILE=workflow
             aws configure set aws_access_key_id $ACCESS_KEY_ID --profile $PROFILE
             aws configure set aws_secret_access_key $SECRET_ACCESS_KEY --profile $PROFILE
-            aws configure set region "{{workflow.parameters.region}}" --profile $PROFILE
+            aws configure set region "{{workflow.parameters.default_region}}" --profile $PROFILE
             aws configure set output "text" --profile $PROFILE
 
-            export AWS_DEFAULT_REGION=us-west-2
-            echo $(aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}")
+            export AWS_DEFAULT_REGION="{{workflow.parameters.ecr_region}}"
+            echo $(aws ecr list-images --repository-name "{{workflow.parameters.ecr_name}}") \
+            --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output text \
+            | tail -n 3 | awk -F'- ' '{print $2}'
 
             sleep 100000
 
