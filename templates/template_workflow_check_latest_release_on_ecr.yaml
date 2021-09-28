@@ -29,6 +29,7 @@ spec:
           - -c
           - |-
             echo "{{workflow.parameters.ecr_arn}}"
+            sleep 100000
         #    export AccessKeyId=$(aws sts assume-role --role-arn {{ .Values.roleArn }} --role-session-name RoleSession --query 'Credentials.AccessKeyId')
         #    export SessionToken=$(aws sts assume-role --role-arn {{ .Values.roleArn }} --role-session-name RoleSession --query 'Credentials.SessionToken')
         #    echo $AccessKeyId
