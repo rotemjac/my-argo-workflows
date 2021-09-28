@@ -51,13 +51,11 @@ spec:
 
             # sleep 100000
 
-        #command: [cowsay]
-        #args: ["{{inputs.parameters.msg}}"]
-      outputs:
+      #outputs:
         #parameters:
         #  - name: output-param-1
         #    valueFrom:
         #      path: /p1.txt
-        artifacts:
-          - name: aws-config-file
-            path: ~/.aws
+        #artifacts:
+        #  - name: aws-config-file
+        #    path: ~/.aws
