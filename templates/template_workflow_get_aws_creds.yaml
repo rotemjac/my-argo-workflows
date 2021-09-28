@@ -52,7 +52,7 @@ spec:
             # --query 'sort_by(imageDetails,& imagePushedAt)[*].imageTags[0]' --output text \
             # | tail -n 3 | awk -F'- ' '{print $2}')
 
-            # sleep 100000
+            sleep 40
 
       #outputs:
         #parameters:
